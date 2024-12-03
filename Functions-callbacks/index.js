@@ -20,18 +20,36 @@ console.log(addS("pizza"));
 console.log(addS("bagel"));
 
 // Challenge 3
-function map(array, callback) {}
+function mulBy2(num) {
+  return num * 2;
+}
 
-// console.log(map([1, 2, 3], addTwo));
+function map(array, callback) {
+  let arr = [];
+  for (let i = 0; i < array.length; i++) {
+    arr.push(callback(array[i]));
+  }
+  return arr;
+}
 
-// Challenge 4
-function forEach(array, callback) {}
+// // console.log(map([2, 4, 6], mulBy2));
 
-// see for yourself if your forEach works!
+// // Challenge 4
+function forEach(array, callback) {
+  let arr = [];
+  for (let i = 0; i < array.length; i++) {
+    arr.push(callback(array[i]));
+  }
+}
+// // see for yourself if your forEach works!
 
 // Challenge 5
-function mapWith(array, callback) {}
-
+function mapWith(array, callback) {
+  const arr = [];
+  forEach(array, (elem) => arr.push(callback(elem)));
+  return arr;
+}
+console.log(mapWith([2, 4, 6], mulBy2));
 // Challenge 6
 function reduce(array, callback, initialValue) {}
 
