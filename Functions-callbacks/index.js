@@ -51,12 +51,54 @@ function mapWith(array, callback) {
 }
 console.log(mapWith([2, 4, 6], mulBy2));
 // Challenge 6
-function reduce(array, callback, initialValue) {}
+function sumUp(initialValue, accumulateValue) {
+  return initialValue + accumulateValue;
+}
+// function reduce(array, callback, initialValue) {
+//   let accumulateValue = initialValue;
+//   forEach(array, (ele) => {
+//     accumulateValue = callback(ele, accumulateValue);
+//   });
 
+//   return accumulateValue;
+// }
+console.log(reduce([1, 2, 3], sumUp, 0));
 // Challenge 7
-function intersection(arrays) {}
+function intersection(arrays) {
+  return reduce(
+    arrays,
+    (currentArray, accumulator) => {
+      let result = [];
+      for (let i = 0; i < accumulator.length; i++) {
+        for (let j = 0; j < currentArray.length; j++) {
+          if (accumulator[i] === currentArray[j]) {
+            result.push(accumulator[i]);
+            break; // Avoid duplicates in the result
+          }
+        }
+      }
+      return result;
+    },
+    arrays[0]
+  ); // Initial value is the first array
+}
 
-// console.log(intersection([[5, 10, 15, 20], [15, 88, 1, 5, 7], [1, 10, 15, 5, 20]]));
+// Custom reduce function
+function reduce(array, callback, initialValue) {
+  let accumulateValue = initialValue;
+  for (let i = 0; i < array.length; i++) {
+    accumulateValue = callback(array[i], accumulateValue);
+  }
+  return accumulateValue;
+}
+
+console.log(
+  intersection([
+    [5, 10, 15, 20],
+    [15, 88, 1, 5, 7],
+    [1, 10, 15, 5, 20],
+  ])
+);
 // should log: [5, 15]
 
 // Challenge 8
